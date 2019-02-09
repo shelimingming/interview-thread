@@ -1,4 +1,4 @@
-package com.sheliming.thread.atomic;
+package com.sheliming.thread.count;
 
 import com.sheliming.thread.annoations.NotThreadSafe;
 import com.sheliming.thread.annoations.ThreadSafe;
@@ -10,7 +10,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @ThreadSafe
-public class ConcurrencyAtomicTest {
+public class CountAtomicTest {
     public static int clientTotal = 5000;
     public static int threadTotal = 200;
     public static AtomicInteger count = new AtomicInteger(0);

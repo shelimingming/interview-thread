@@ -1,14 +1,15 @@
-package com.sheliming.thread.atomic;
+package com.sheliming.thread.count;
 
-import com.sheliming.thread.annoations.NotThreadSafe;
+import com.sheliming.thread.annoations.ThreadSafe;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
-@NotThreadSafe
-public class ConcurrencyTest {
+@ThreadSafe
+public class CountSynchronizedTest {
     public static int clientTotal = 5000;
     public static int threadTotal = 200;
     public static int count = 0;
@@ -28,6 +29,7 @@ public class ConcurrencyTest {
                 }
                 countDownLatch.countDown();
             });
+
         }
 
         try {
@@ -38,7 +40,7 @@ public class ConcurrencyTest {
         System.out.println("count:" + count);
     }
 
-    private static void add() {
+    private synchronized static void add() {
         count++;
     }
 }
