@@ -5,37 +5,42 @@ import java.util.List;
 import java.util.Vector;
 
 public class VectorFor {
-    private static void test1(Vector<Integer> vector) {
-        for (Integer i:vector ) {
-            if(i.equals(3)) {
-                vector.remove(i);
+    // java.util.ConcurrentModificationException
+    private static void test1(Vector<Integer> v1) { // foreach
+        for(Integer i : v1) {
+            if (i.equals(3)) {
+                v1.remove(i);
             }
         }
     }
-    private static void test2(Vector<Integer> vector) {
-        Iterator<Integer> iterator = vector.iterator();
+
+    // java.util.ConcurrentModificationException
+    private static void test2(Vector<Integer> v1) { // iterator
+        Iterator<Integer> iterator = v1.iterator();
         while (iterator.hasNext()) {
             Integer i = iterator.next();
-            if(i.equals(3)) {
-                vector.remove(i);
+            if (i.equals(3)) {
+                v1.remove(i);
             }
         }
     }
-    private static void test3(Vector<Integer> vector) {
-        for(int i=0;i<vector.size();i++) {
-            if(vector.elementAt(i).equals(3)) {
-                vector.remove(i);
+
+    // success
+    private static void test3(Vector<Integer> v1) { // for
+        for (int i = 0; i < v1.size(); i++) {
+            if (v1.get(i).equals(3)) {
+                v1.remove(i);
             }
         }
     }
 
     public static void main(String[] args) {
-        Vector<Integer> list = new Vector<Integer>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        test1(list);
+
+        Vector<Integer> vector = new Vector<>();
+        vector.add(1);
+        vector.add(2);
+        vector.add(3);
+        test1(vector);
     }
 
 }
