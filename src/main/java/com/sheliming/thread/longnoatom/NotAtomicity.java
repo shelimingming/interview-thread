@@ -1,8 +1,11 @@
 package com.sheliming.thread.longnoatom;
 
+import com.sheliming.thread.annoations.NotThreadSafe;
+
 /**
  * 在32位JVM中，64位的long数据的读和写都不是原子操作，即不具有原子性，并发的时候相互干扰了
  */
+@NotThreadSafe
 public class NotAtomicity {
     //静态变量t
     public  static long t = 0;
